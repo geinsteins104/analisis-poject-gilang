@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kata-Kata Romantis untuk Pasangan Sebelum Tidur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .quote-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .quote-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .favorite-btn {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        .favorite-btn:hover {
+            background: rgba(255, 215, 0, 0.5);
+        }
+
+        .share-btn {
+            background: rgba(30, 144, 255, 0.3);
+        }
+
+        .share-btn:hover {
+            background: rgba(30, 144, 255, 0.5);
+        }
+
+        .favorites-section {
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .favorites-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .favorites-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .favorite-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 0.9rem;
+            border-left: 3px solid gold;
+        }
+
+        .night-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="night-sky" id="nightSky"></div>
+    
+    <div class="container">
+        <header>
+            <h1 style="color: pink;">SELAMAT TIDUR MY BUBU AKUU
+                jangan lupa mandi yaaa
+            </h1>
+            <p class="subtitle"> perasaanmu sebelum tidur dengan kata-kata penuh kasih sayang</p>
+        </header>
+        
+        <main>
+            <div class="quote-container">
+                <p class="quote-text" id="quoteText">"Selamat malam sayangku. Semoga mimpi indah selalu menyertaimu. Aku bersyukur memiliki kamu di hidupku."</p>
+                <p class="quote-author" id="quoteAuthor">- Untuk Pasangan Tercinta</p>
+            </div>
+            
+            <div class="controls">
+                <button id="newQuoteBtn">Kata-Kata Baru</button>
+                <button id="favoriteBtn" class="favorite-btn">Simpan Favorit</button>
+                <button id="shareBtn" class="share-btn">Bagikan</button>
+            </div>
+            
+            <div class="favorites-section">
+                <h2 class="favorites-title">Kata-Kata Favoritmu</h2>
+                <div class="favorites-list" id="favoritesList">
+                    <!-- Daftar favorit akan muncul di sini -->
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 Kata-Kata Romantis untuk Pasangan | Dibuat dengan penuh ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data kata-kata romantis
+        const romanticQuotes = [
+            {
+                text: "Selamat malam sayangku. Semoga mimpi indah selalu menyertaimu. Aku bersyukur memiliki kamu di hidupku.",
+                author: "Untuk Pasangan Tercinta"
+            },
+            {
+                text: "Malam ini, sebelum tidur, aku ingin mengingatkanmu betapa berharganya kamu bagiku. Tidur yang nyenyak, kekasihku.",
+                author: "Dari yang Selalu Menyayangimu"
+            },
+            {
+                text: "Bintang-bintang di langit takkan pernah secerah senyummu. Selamat malam, sayang. Aku mencintaimu.",
+                author: "Kekasihmu"
+            },
+            {
+                text: "Di setiap hembusan nafasku, di setiap detak jantungku, ada cinta untukmu. Selamat tidur, sayang.",
+                author: "Dari yang Tulus Mencintaimu"
+            },
+            {
+                text: "Mungkin kita terpisah jarak, tapi cintaku selalu bersamamu. Semoga mimpi kita bertemu malam ini.",
+                author: "Untukmu yang Jauh di Mata"
+            },
+            {
+                text: "Tidur yang nyenyak, sayang. Besok adalah hari baru untuk kita berdua menciptakan kenangan indah bersama.",
+                author: "Sang Kekasih"
+            },
+            {
+                text: "Dunia terasa lebih berarti sejak kamu hadir. Selamat malam, cintaku. Mimpi indah selalu.",
+                author: "Dari yang Tergila-gila Padamu"
+            },
+            {
+                text: "Bulan dan bintang bersinar terang malam ini, tapi tak secemerlang senyumanmu. Selamat tidur, sayang.",
+                author: "Kekasih Setiamu"
+            },
+            {
+                text: "Aku berharap bisa memelukmu erat-erat sekarang. Tapi untuk sementara, doaku yang menemani tidurmu.",
+                author: "Untukmu yang Kurindu"
+            },
+            {
+                text: "Setiap malam sebelum tidur, aku selalu bersyukur karena memiliki kamu. Kamu adalah anugerah terindah dalam hidupku.",
+                author: "Dari yang Selalu Bersyukur"
+            }
+        ];
+
+        // Elemen DOM
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const newQuoteBtn = document.getElementById('newQuoteBtn');
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const favoritesList = document.getElementById('favoritesList');
+        const nightSky = document.getElementById('nightSky');
+
+        // Variabel untuk menyimpan quote saat ini dan favorit
+        let currentQuote = {};
+        let favorites = JSON.parse(localStorage.getItem('favoriteQuotes')) || [];
+
+        // Fungsi untuk menampilkan quote acak
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * romanticQuotes.length);
+            currentQuote = romanticQuotes[randomIndex];
+            quoteText.textContent = currentQuote.text;
+            quoteAuthor.textContent = currentQuote.author;
+        }
+
+        // Fungsi untuk menambahkan quote ke favorit
+        function addToFavorites() {
+            if (currentQuote.text && !favorites.some(quote => quote.text === currentQuote.text)) {
+                favorites.push(currentQuote);
+                localStorage.setItem('favoriteQuotes', JSON.stringify(favorites));
+                updateFavoritesList();
+                alert('Kata-kata berhasil disimpan ke favorit!');
+            } else {
+                alert('Kata-kata ini sudah ada di favorit!');
+            }
+        }
+
+        // Fungsi untuk memperbarui daftar favorit
+        function updateFavoritesList() {
+            favoritesList.innerHTML = '';
+            favorites.forEach(quote => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'favorite-item';
+                favoriteItem.innerHTML = `
+                    <p>${quote.text}</p>
+                    <p style="text-align: right; margin-top: 10px; font-size: 0.8rem;">${quote.author}</p>
+                `;
+                favoritesList.appendChild(favoriteItem);
+            });
+        }
+
+        // Fungsi untuk berbagi quote
+        function shareQuote() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Kata-Kata Romantis untuk Pasangan',
+                    text: currentQuote.text,
+                    url: window.location.href
+                })
+                .then(() => console.log('Berhasil berbagi'))
+                .catch((error) => console.log('Error sharing', error));
+            } else {
+                // Fallback untuk browser yang tidak mendukung Web Share API
+                const textToShare = `${currentQuote.text} - ${currentQuote.author}`;
+                navigator.clipboard.writeText(textToShare)
+                    .then(() => alert('Kata-kata telah disalin ke clipboard!'))
+                    .catch(err => console.error('Gagal menyalin teks: ', err));
+            }
+        }
+
+        // Fungsi untuk membuat bintang-bintang
+        function createStars() {
+            const starsCount = 100;
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Posisi acak
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Ukuran acak
+                const size = Math.random() * 3;
+                
+                // Durasi animasi acak
+                const duration = 3 + Math.random() * 7;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                nightSky.appendChild(star);
+            }
+        }
+
+        // Event listeners
+        newQuoteBtn.addEventListener('click', displayRandomQuote);
+        favoriteBtn.addEventListener('click', addToFavorites);
+        shareBtn.addEventListener('click', shareQuote);
+
+        // Inisialisasi
+        displayRandomQuote();
+        updateFavoritesList();
+        createStars();
+    </script>
+</body>
+</html>
